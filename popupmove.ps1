@@ -6,16 +6,16 @@ if ((get-date -uformat %a) -eq 'sat')
     remove-item $LOCATION\JPEGs\*.*
     $month = (get-date).adddays(2).tostring('MM MMM')
     $day = (get-date).adddays(2).tostring('dd')
-    copy-item $LOCATION\2013\$month\$day\* -destination $LOCATION\JPEGs\
-        if(compare-object -ReferenceObject @(gci "$LOCATION\2013\$month\$day\") -DifferenceObject @(gci "$LOCATION\JPEGs\") -IncludeEqual -Property Name, length)
+    copy-item $LOCATION\2014\$month\$day\* -destination $LOCATION\JPEGs\
+        if(compare-object -ReferenceObject @(gci "$LOCATION\2014\$month\$day\") -DifferenceObject @(gci "$LOCATION\JPEGs\") -IncludeEqual -Property Name, length)
     {
     $status = 'GOOD'
-    compare-object -ReferenceObject @(gci "$LOCATION\2013\$month\$day\") -IncludeEqual -DifferenceObject @(gci "$LOCATION\JPEGs\") -Property Name, length, lastwritetime|Format-List > $SCRIPTSTUFF\difftest.txt
+    compare-object -ReferenceObject @(gci "$LOCATION\2014\$month\$day\") -IncludeEqual -DifferenceObject @(gci "$LOCATION\JPEGs\") -Property Name, length, lastwritetime|Format-List > $SCRIPTSTUFF\difftest.txt
     }
         else
     {
     $status = 'PROBLEM'   
-    compare-object -ReferenceObject @(gci "$LOCATION\2013\$month\$day\") -IncludeEqual -DifferenceObject @(gci "$LOCATION\JPEGs\") -Property Name, length, lastwritetime|Format-List > $SCRIPTSTUFF\difftest.txt
+    compare-object -ReferenceObject @(gci "$LOCATION\2014\$month\$day\") -IncludeEqual -DifferenceObject @(gci "$LOCATION\JPEGs\") -Property Name, length, lastwritetime|Format-List > $SCRIPTSTUFF\difftest.txt
     }
     }
 else 
