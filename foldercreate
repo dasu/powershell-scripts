@@ -1,0 +1,11 @@
+#create a folder structure month\firstdateofweek, for whole year.
+$day = get-date -year 2014 -month 1 -day 6
+
+if($day.DayOfWeek -eq "Monday"){
+    while( ($day.DayofWeek -eq "Monday") -and ($day.Year -eq 2014) ){
+        $month = $day.tostring('MM') + " " + $day.tostring('MMM').toupper()
+        $day2 =  $day.tostring('dd')
+        New-Item -ItemType Directory -Path $month\$day2
+        $day = $day.AddDays(7)
+    }
+}
