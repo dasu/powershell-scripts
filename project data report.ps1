@@ -38,7 +38,7 @@ foreach($share in $shares){
 $re|Export-Csv -NoTypeInformation $csv
 
 $2 = Get-Date
-$tt = ($2 - $1).minutes
+$tt = ($2 - $1).TotalMinutes
 
 
 #Emailing capabilities, uncomment and fill out the appropriate information.
